@@ -2,15 +2,7 @@
 
 ### 1. 创建新项目
 
-有两种方式可以使用此模板:
-
-1. 点击 GitHub 仓库页面上的 "Use this template" 按钮创建新仓库
-2. 手动克隆并初始化:
-```bash
-# 克隆仓库
-git clone https://github.com/OSpoon/starter_pypkg.git your-project-name
-cd your-project-name
-```
+点击 GitHub 仓库页面上的 "Use this template" 按钮创建新仓库
 
 ### 2. 初始化项目信息
 
@@ -18,7 +10,7 @@ cd your-project-name
 
 ```bash
 # 运行初始化工具
-python init.py
+uv run scripts/init.py
 ```
 
 此工具提供友好的图形界面，帮助您：
@@ -39,13 +31,14 @@ python init.py
 
 1. 安装开发依赖:
 ```bash
-python -m venv .venv
-source .venv/bin/activate  # Linux/macOS
-# 或
-.venv\Scripts\activate     # Windows
+uv venv
 
-pip install -e ".[dev]"   # 安装所有开发依赖
-pre-commit install        # 安装 git hooks
+source .venv/bin/activate    # Linux/macOS
+# 或
+.venv\Scripts\activate       # Windows
+
+uv sync                      # 同步项目依赖
+pre-commit install           # 安装 git hooks
 ```
 
 2. 开发新功能:
