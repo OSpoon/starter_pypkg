@@ -54,16 +54,19 @@ cd starter_pypkg
 2. 创建虚拟环境:
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate  # Linux/macOS
+uv venv
+
+source .venv/bin/activate    # Linux/macOS
 # 或
-.venv\Scripts\activate  # Windows
+.venv\Scripts\activate       # Windows
+
+
 ```
 
 3. 安装开发依赖:
 
 ```bash
-pip install -e ".[dev]"
+uv sync     # 同步项目依赖
 ```
 
 4. 安装 pre-commit hooks:
