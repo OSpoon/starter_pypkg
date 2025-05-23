@@ -5,49 +5,35 @@
 有两种方式可以使用此模板:
 
 1. 点击 GitHub 仓库页面上的 "Use this template" 按钮创建新仓库
-2. 手动克隆并重置:
+2. 手动克隆并初始化:
 ```bash
 # 克隆仓库
 git clone https://github.com/OSpoon/starter_pypkg.git your-project-name
 cd your-project-name
-
-# 删除原有的 git 历史
-rm -rf .git
-git init
 ```
 
-### 2. 修改项目信息
+### 2. 初始化项目信息
 
-1. 修改 `pyproject.toml`:
-```toml
-[project]
-name = "your-project-name"  # 修改包名
-version = "0.1.0"           # 修改版本号
-authors = [
-    { name = "Your Name", email = "your.email@example.com" }  # 修改作者信息
-]
-description = "Your project description"  # 修改项目描述
-```
+使用内置的初始化工具可以快速替换所有项目信息：
 
-2. 重命名包目录:
 ```bash
-mv src/starter_pypkg src/your_project_name
+# 运行初始化工具
+python init.py
 ```
 
-3. 修改导入路径:
-- 更新 `src/your_project_name/__init__.py` 中的导入语句
-- 更新 `tests/test_your_project_name.py` 中的导入语句
+此工具提供友好的图形界面，帮助您：
+- 设置项目名称和描述
+- 更新作者信息和GitHub用户名
+- 重命名源码目录和相关文件
+- 更新所有文件中的引用
+- 初始化Git仓库(可选)
 
-4. 更新 README.md:
-- 修改项目名称和描述
-- 更新示例代码
-- 修改仓库链接
-
-5. 更新其他文件:
-- `.github/workflows/*.yml`: 修改 CI/CD 配置
-- `LICENSE`: 更新版权信息
-- `CONTRIBUTING.md`: 更新贡献指南
-- `.github/*`: 更新 Issue 和 PR 模板
+工具会自动处理以下文件的更新：
+- `pyproject.toml`：包名称、版本号、作者信息等
+- `README.md`：项目名称、描述和示例代码
+- `LICENSE`：版权信息
+- GitHub相关配置文件和工作流程
+- 源代码文件和目录结构
 
 ### 3. 开发工作流程
 
