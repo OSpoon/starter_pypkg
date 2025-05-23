@@ -66,11 +66,6 @@ coverage report            # 查看覆盖率报告
 2. 创建 Release:
 - 在 GitHub 上创建新的 Release
 - CI 将自动构建并发布到 PyPI
-
-3. 手动发布到 PyPI (如需要):
-```bash
-python -m build           # 构建分发包
-twine upload dist/*       # 上传到 PyPI
 ```
 
 ### 5. VS Code 开发环境
