@@ -107,8 +107,8 @@ def initialize_project(project_name, display_name, project_description,
     for file_path in github_files:
         if os.path.exists(file_path):
             replacements = [
-                ('OSpoon', github_username),
                 ('OSpoon/starter_pypkg', f'{github_username}/{project_name}'),
+                ('OSpoon', github_username),
             ]
             replace_in_file(file_path, replacements)
             add_log(f"已更新 {file_path}")
