@@ -100,6 +100,7 @@ line-ending = "auto"
 dev = [
     "build>=1.2.2.post1",
     "coverage>=7.8.1",
+    "gradio>=5.31.0",
     "mypy>=1.15.0",
     "pre-commit>=4.2.0",
     "pytest>=8.3.5",
