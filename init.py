@@ -215,34 +215,40 @@ def initialize_project(project_name, display_name, project_description,
 
 def create_ui():
     """创建Gradio界面"""
-    with gr.Blocks(title="项目模板初始化工具") as app:
-        gr.Markdown("# 项目模板初始化工具")
-        gr.Markdown("使用此工具将 starter_pypkg 模板转换为您的项目")
-        
-        with gr.Row():
-            with gr.Column():
-                project_name = gr.Textbox(label="项目名称 (python包名, 例如: my_package)", 
-                                         value=os.path.basename(os.getcwd()))
-                display_name = gr.Textbox(label="项目显示名称 (用于README等文档)", 
-                                          info="留空将使用项目名称")
-                project_description = gr.Textbox(label="项目描述")
-                author_name = gr.Textbox(label="您的名字")
-                author_email = gr.Textbox(label="您的邮箱")
-                github_username = gr.Textbox(label="GitHub用户名")
-                copyright_year = gr.Textbox(label="版权年份", 
-                                           value=str(datetime.datetime.now().year))
-                reinit_git = gr.Checkbox(label="初始化Git仓库", value=False)
-                
-                submit_button = gr.Button("初始化项目", variant="primary")
+    with gr.Blocks(title="项目模板初始化工具", css="#container { max-width: 1000px; margin: 0 auto; }") as app:
+        with gr.Column(elem_id="container"):
+            gr.Markdown("# 项目模板初始化工具")
+            gr.Markdown("使用此工具将 starter_pypkg 模板转换为您的项目")
             
-            with gr.Column():
-                output = gr.Textbox(label="日志输出", lines=20)
+            # 将表单项分成两列显示
+            with gr.Row(equal_height=True):
+                with gr.Column():
+                    project_name = gr.Textbox(label="项目名称 (python包名, 例如: my_package)", 
+                                            value=os.path.basename(os.getcwd()))
+                    display_name = gr.Textbox(label="项目显示名称 (用于README等文档)", 
+                                            info="留空将使用项目名称")
+                    project_description = gr.Textbox(label="项目描述")
+                    author_name = gr.Textbox(label="您的名字")
+                
+                with gr.Column():
+                    author_email = gr.Textbox(label="您的邮箱")
+                    github_username = gr.Textbox(label="GitHub用户名")
+                    copyright_year = gr.Textbox(label="版权年份", 
+                                            value=str(datetime.datetime.now().year))
+                    reinit_git = gr.Checkbox(label="初始化Git仓库", value=False)
+            
+            # 按钮居中显示
+            submit_button = gr.Button("初始化项目", variant="primary", scale=0.5)
+            
+            # 日志输出放到下方
+            with gr.Row():
+                output = gr.Textbox(label="日志输出", lines=15)
         
         submit_button.click(
             fn=initialize_project, 
             inputs=[project_name, display_name, project_description, 
-                   author_name, author_email, github_username, 
-                   copyright_year, reinit_git],
+                  author_name, author_email, github_username, 
+                  copyright_year, reinit_git],
             outputs=output
         )
         
