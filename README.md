@@ -1,1 +1,1 @@
-# starter-pypkg
+# starter_pypkg

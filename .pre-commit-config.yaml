@@ -1,0 +1,43 @@
+default_install_hook_types: [pre-commit, pre-push]
+default_language_version:
+    python: python3.13
+
+repos:
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  rev: v0.11.10
+  hooks:
+    - id: ruff
+      args: [--fix]
+    - id: ruff-format
+
+- repo: local
+  hooks:
+  - id: mypy
+    name: mypy
+    entry: mypy
+    args: [src/]
+    language: python
+    additional_dependencies: ["mypy"]
+    pass_filenames: false
+    types: [python]
+
+  - id: run-tests
+    name: run tests
+    entry: coverage run -m pytest
+    language: python
+    additional_dependencies: ["pytest", "coverage"]
+    pass_filenames: false
+    types: [python]
+
+  - id: check-coverage
+    name: Check Coverage
+    entry: coverage report -m --fail-under=60
+    language: python
+    additional_dependencies: ["coverage"]
+    pass_filenames: false
+    types: [python]
+
+- repo: https://github.com/Yelp/detect-secrets
+  rev: "v1.5.0"
+  hooks:
+  - id: detect-secrets
