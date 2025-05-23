@@ -61,14 +61,14 @@ def initialize_project(project_name, display_name, project_description,
     # 更新pyproject.toml
     if os.path.exists("pyproject.toml"):
         replacements = [
+            ('"Homepage" = "https://github.com/OSpoon/starter_pypkg/"', f'"Homepage" = "https://github.com/{github_username}/{project_name}/"'),
+            ('"Bug Tracker" = "https://github.com/OSpoon/starter_pypkg/issues"', f'"Bug Tracker" = "https://github.com/{github_username}/{project_name}/issues"'),
             ('name = "starter_pypkg"', f'name = "{package_name}"'),
             ('OSpoon', github_username),
             ('zxin088@gmail.com', author_email),
             ('{ name = "OSpoon", email = "zxin088@gmail.com" }', f'{{ name = "{author_name}", email = "{author_email}" }}'),
             ('Add your description here', project_description),
             ('keywords = ["starter_pypkg"]', f'keywords = ["{package_name}"]'),
-            ('"Homepage" = "https://github.com/OSpoon/starter_pypkg/"', f'"Homepage" = "https://github.com/{github_username}/{project_name}/"'),
-            ('"Bug Tracker" = "https://github.com/OSpoon/starter_pypkg/issues"', f'"Bug Tracker" = "https://github.com/{github_username}/{project_name}/issues"'),
         ]
         replace_in_file("pyproject.toml", replacements)
         add_log("已更新 pyproject.toml")
